@@ -1,2 +1,2 @@
 # dvim
-personal Dockerized VIM setup 
+personal Dockerized VIM setup.
