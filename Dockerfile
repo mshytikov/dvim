@@ -26,8 +26,7 @@ RUN git clone --depth 1 https://github.com/vim/vim.git \
    --enable-python3interp \
    --enable-perlinterp \
    --enable-luainterp\
-   make VIMRUNTIMEDIR=/usr/share/vim/vim74 && \
-   make install \
+    && make install \
  && cd .. && rm -rf vim
 
 RUN adduser --disabled-password --gecos "" -uid 1001 rat
