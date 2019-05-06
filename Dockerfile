@@ -1,32 +1,29 @@
-FROM ubuntu:xenial
+FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y \
-    git \
-    ruby \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ack-grep \
-    tmux \
     build-essential \
+    git \
     libncurses5-dev \
-    ruby-dev \
-    python-dev \
+    libpython3.6 \
     python3-dev \
-    python-pip \
-    python3-pip
+    python3-pip \
+    ruby \
+    ruby-dev \
+    tmux
 
 RUN gem install rake \
     && gem install rubocop \
-    && pip install flake8 \
     && pip3 install flake8
 
 RUN git clone --depth 1 https://github.com/vim/vim.git \
  && cd vim && ./configure \
    --with-features=huge \
    --enable-rubyinterp \
-   --enable-pythoninterp \
    --enable-python3interp \
    --enable-perlinterp \
    --enable-luainterp\
-   make VIMRUNTIMEDIR=/usr/share/vim/vim74 && \
+   make VIMRUNTIMEDIR=/usr/share/vim/vim81 && \
    make install \
  && cd .. && rm -rf vim
 
@@ -37,7 +34,7 @@ WORKDIR /home/rat
 
 RUN git clone --depth 1 --recursive \
     https://github.com/carlhuda/janus.git .vim \
-    && cd .vim && rake
+    && cd .vim && rake && rm -rf .git/
 
 RUN mkdir .janus && cd .janus && git clone https://github.com/benmills/vimux.git
 
@@ -49,9 +46,9 @@ USER root
 RUN apt-get remove -y \
     build-essential \
     libncurses5-dev \
-    ruby-dev \
-    python-dev \
     python3-dev \
+    python3-pip \
+    ruby-dev \
     && apt-get autoremove -y
 
 CMD vim
