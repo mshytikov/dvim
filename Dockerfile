@@ -47,7 +47,6 @@ RUN apt-get remove -y \
     build-essential \
     libncurses5-dev \
     python3-dev \
-    python3-pip \
     ruby-dev \
     && apt-get autoremove -y
 
