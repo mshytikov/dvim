@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN gem install rake \
     && gem install rubocop \
-    && pip3 install flake8
+    && pip3 install flake8 \
+    && pip3 install black
 
 RUN git clone --depth 1 https://github.com/vim/vim.git \
  && cd vim && ./configure \
@@ -36,7 +37,9 @@ RUN git clone --depth 1 --recursive \
     https://github.com/carlhuda/janus.git .vim \
     && cd .vim && rake && rm -rf .git/
 
-RUN mkdir .janus && cd .janus && git clone https://github.com/benmills/vimux.git
+RUN mkdir .janus &&  cd .janus \
+    && git clone https://github.com/benmills/vimux.git \
+    && git clone https://github.com/psf/black.git
 
 RUN ln -s  /dotfiles/vim/.vimrc.after   /home/rat/.vimrc.after  && \
     ln -s  /dotfiles/vim/.vimrc.before  /home/rat/.vimrc.before && \
