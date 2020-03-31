@@ -39,7 +39,9 @@ RUN git clone --depth 1 --recursive \
 
 RUN mkdir .janus &&  cd .janus \
     && git clone https://github.com/benmills/vimux.git \
-    && git clone https://github.com/psf/black.git
+    && git clone --branch 19.10b0 https://github.com/psf/black.git
+    # https://github.com/psf/black/issues/1293
+
 
 RUN ln -s  /dotfiles/vim/.vimrc.after   /home/rat/.vimrc.after  && \
     ln -s  /dotfiles/vim/.vimrc.before  /home/rat/.vimrc.before && \
