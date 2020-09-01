@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN gem install rake \
     && gem install rubocop \
     && pip3 install flake8 \
-    && pip3 install black
+    && pip3 install black \
+    && pip3 install isort
 
 RUN git clone --depth 1 https://github.com/vim/vim.git \
  && cd vim && ./configure \
@@ -39,6 +40,7 @@ RUN git clone --depth 1 --recursive \
 
 RUN mkdir .janus &&  cd .janus \
     && git clone https://github.com/benmills/vimux.git \
+    && git clone https://github.com/fisadev/vim-isort \
     && git clone --branch 19.10b0 https://github.com/psf/black.git
     # https://github.com/psf/black/issues/1293
 
