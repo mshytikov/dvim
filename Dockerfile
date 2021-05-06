@@ -1,11 +1,11 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ack-grep \
     build-essential \
     git \
     libncurses5-dev \
-    libpython3.6 \
+    libpython3.8 \
     python3-dev \
     python3-pip \
     ruby \
@@ -41,7 +41,7 @@ RUN git clone --depth 1 --recursive \
 RUN mkdir .janus &&  cd .janus \
     && git clone https://github.com/benmills/vimux.git \
     && git clone https://github.com/fisadev/vim-isort \
-    && git clone --branch 19.10b0 https://github.com/psf/black.git
+    && git clone --branch 21.5b0 https://github.com/psf/black.git
     # https://github.com/psf/black/issues/1293
 
 
